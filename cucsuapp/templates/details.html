@@ -1,0 +1,18 @@
+<!-- elections/templates/elections/detail.html -->
+<div class="container mt-5">
+    <div class="card p-4">
+        <div class="text-center">
+            <img src="{{ candidate.image.url }}" class="rounded-circle" style="width:200px; height:200px; object-fit:cover;">
+            <h2>{{ candidate.name }}</h2>
+        </div>
+        <hr>
+        <p><strong>Department:</strong> {{ candidate.department }}</p>
+        <p><strong>Session:</strong> {{ candidate.session }}</p>
+        <p><strong>ID No:</strong> {{ candidate.student_id }}</p>
+        <p><strong>Position:</strong> {{ candidate.position }}</p>
+        <p><strong>Ballot:</strong> {{ candidate.ballot }}</p>
+        <p><strong>Panel:</strong> {{ candidate.panel }}</p>
+        <p><strong>Manifesto:</strong></p>
+        <p>{{ candidate.manifesto }}</p>
+    </div>
+</div>
