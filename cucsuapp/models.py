@@ -4,7 +4,6 @@ from django.db import models
 # elections/models.py
 
 POSITION_CHOICES = [
-    ('president', 'সভাপতি'),
     ('vp', 'ভিপি'),
     ('gs', 'জিএস'),
     ('ags', 'এজিএস'),
@@ -31,6 +30,10 @@ POSITION_CHOICES = [
 ]
 
 class Candidate(models.Model):
+    ELECTION_TYPE_CHOICES = [
+    ('CUCSU', 'কেন্দ্রীয় ছাত্র সংসদ'),
+    ('HALL', 'হল সংসদ'),
+]
   
 
     name = models.CharField(max_length=100)
@@ -42,6 +45,11 @@ class Candidate(models.Model):
     position = models.CharField(max_length=100, choices=POSITION_CHOICES)
     ballot = models.CharField(max_length=50)
     panel = models.CharField(max_length=50)
+    election_type = models.CharField(
+        max_length=20,
+        choices=ELECTION_TYPE_CHOICES,
+        default='CUCSU'
+    )
 
     def __str__(self):
         return self.name

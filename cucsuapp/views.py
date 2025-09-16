@@ -34,7 +34,9 @@ def candidate_form(request):
         ballot = request.POST.get('ballot')
         panel = request.POST.get('panel')
         manifesto = request.POST.get('manifesto')
-        image = request.FILES.get('image')  # ফাইল handle করার জন্য
+        election_type = request.POST.get('election_type')
+        image = request.FILES.get('image')
+          # ফাইল handle করার জন্য
 
         # Save to database
         candidate = Candidate(
@@ -46,6 +48,7 @@ def candidate_form(request):
             ballot=ballot,
             panel=panel,
             manifesto=manifesto,
+            election_type=election_type,
             image=image
         )
         candidate.save()
