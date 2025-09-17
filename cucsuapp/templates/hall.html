@@ -9,18 +9,15 @@
     <!-- Hero Section -->
     <header class="text-center mb-5">
         <h1 class="display-4 fw-bold text-primary mb-4">
-            চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ নির্বাচন (চাকসু)
+            চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় হল সংসদ নির্বাচন 
         </h1>
-        <h2 class="h3 text-success fw-semibold mb-3">
-            ও হল সংসদ নির্বাচন – ২০২৫
-        </h2>
         <p class="lead text-warning fw-medium">
             প্রার্থীদের তালিকা এবং ইশতেহার
         </p>
     </header>
 
     <!-- Hero Banner Section -->
-    <section class="row align-items-center mb-5">
+    {% comment %} <section class="row align-items-center mb-5">
         <!-- Left: Image -->
         <div class="col-12 col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
             <img src="{% static 'cucsuapp/images/cucsu.jpg' %}" 
@@ -41,6 +38,40 @@
                     </p>
                 </div>
             </div>
+        </div>
+    </section> {% endcomment %}
+
+    <section class="card shadow-sm border-0 university-card mb-5">
+        <div class="card-body p-4">
+            <form method="get" class="row g-3 align-items-end">
+                <div class="col-12 col-md-8">
+                    <label for="position" class="form-label fw-medium">পদ অনুযায়ী ফিল্টার করুন</label>
+                    <select name="position" id="position" class="form-select university-select">
+                        <option value="">-সকল পদ-</option>
+                        {% for value, label in positions %}
+                            <option value="{{ value }}" {% if selected_position == value %}selected{% endif %}>
+                                {{ label }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+               
+
+                <div class="col-6 col-md-2">
+                    <button type="submit" class="btn btn-filter w-100">
+                        <i class="bi bi-funnel me-1"></i>
+                        ফিল্টার
+                    </button>
+                </div>
+
+                <div class="col-6 col-md-2">
+                    <a href="{% url 'home' %}" class="btn btn-reset w-100">
+                        <i class="bi bi-arrow-clockwise me-1"></i>
+                        রিসেট
+                    </a>
+                </div>
+            </form>
         </div>
     </section>
 

@@ -20,6 +20,31 @@ def home(request):
         'positions': POSITION_CHOICES,
         'selected_position': position,
     })
+def central(request):
+    position = request.GET.get('position', '')
+
+    if position: 
+        candidates = Candidate.objects.filter(position=position)
+    else:  # default সব দেখাবে
+        candidates = Candidate.objects.filter(election_type='CUCSU')
+    return render(request, 'central.html', {
+        'candidates': candidates,
+        'positions': POSITION_CHOICES,
+        'selected_position': position,
+        })
+
+
+def hall(request):
+    position = request.GET.get('position', '')
+    if position: 
+        candidates = Candidate.objects.filter(position=position)
+    else:  # default সব দেখাবে
+        candidates = Candidate.objects.filter(election_type='HALL')
+    return render(request, 'central.html', {
+        'candidates': candidates,
+        'positions': POSITION_CHOICES,
+        'selected_position': position,
+        })
 def details(request, pk):
     candidate = get_object_or_404(Candidate, pk=pk)
     return render(request, 'details.html', {'candidate': candidate})

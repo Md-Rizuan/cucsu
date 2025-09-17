@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}CUCSU Election 2025 - চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ নির্বাচন{% endblock %}
+{% block title %}CUCSU Election 2025 - চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ প্রার্থীবৃন্দ{% endblock %}
 
 {% block content %}
 <div class="container my-5">
@@ -9,18 +9,16 @@
     <!-- Hero Section -->
     <header class="text-center mb-5">
         <h1 class="display-4 fw-bold text-primary mb-4">
-            চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ নির্বাচন (চাকসু)
+            চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ নির্বাচন (চাকসু) প্রার্থীবৃন্দ
         </h1>
-        <h2 class="h3 text-success fw-semibold mb-3">
-            ও হল সংসদ নির্বাচন – ২০২৫
-        </h2>
+       
         <p class="lead text-warning fw-medium">
             প্রার্থীদের তালিকা এবং ইশতেহার
         </p>
     </header>
 
     <!-- Hero Banner Section -->
-    <section class="row align-items-center mb-5">
+    {% comment %} <section class="row align-items-center mb-5">
         <!-- Left: Image -->
         <div class="col-12 col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
             <img src="{% static 'cucsuapp/images/cucsu.jpg' %}" 
@@ -42,27 +40,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> {% endcomment %}
 
-    <section class="text-center mb-5">
-        <a href="{% url 'central' %}" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           class="btn btn-outline-primary">
-            কেন্দ্রীয় সংসদ
-            <i class="bi bi-box-arrow-up-right ms-1"></i>
-        </a>
-        <a href="{% url 'hall' %}" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           class="btn btn-outline-primary">
-            হল সংসদ
-            <i class="bi bi-box-arrow-up-right ms-1"></i>
-        </a>
-    </section>
-
-
-    <!-- Filter Section -->
     <section class="card shadow-sm border-0 university-card mb-5">
         <div class="card-body p-4">
             <form method="get" class="row g-3 align-items-end">
@@ -96,6 +75,27 @@
             </form>
         </div>
     </section>
+
+ <section class="text-center mb-5">
+        <a href="{% url 'central' %}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="btn btn-outline-primary">
+            কেন্দ্রীয় সংসদ
+            <i class="bi bi-box-arrow-up-right ms-1"></i>
+        </a>
+        <a href="{% url 'hall' %}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="btn btn-outline-primary">
+            হল সংসদ
+            <i class="bi bi-box-arrow-up-right ms-1"></i>
+        </a>
+    </section> 
+
+
+    <!-- Filter Section -->
+   
 
     <!-- Candidates Grid -->
     <section class="row g-4 mb-5">
