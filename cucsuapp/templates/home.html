@@ -60,6 +60,18 @@
             <i class="bi bi-box-arrow-up-right ms-1"></i>
         </a>
     </section>
+    <section class="text-center mb-5">
+        <a href="{% url 'candidate_form' %}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="btn btn-outline-primary">
+           নতুন প্রার্থী যুক্ত করুন 
+           <i class="bi bi-person-plus ms-1"></i>
+        </a>
+       
+    </section>
+
+ 
 
 
     <!-- Filter Section -->
@@ -82,7 +94,13 @@
 
                 <div class="col-6 col-md-2">
                     <button type="submit" class="btn btn-filter w-100">
-                        <i class="bi bi-funnel me-1"></i>
+                        {% comment %} <i class="bi bi-funnel me-1"></i> {% endcomment %}
+                        <i class="bi bi-funnel me-1" 
+                        style="background: linear-gradient(135deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+                               -webkit-background-clip: text;
+                               -webkit-text-fill-color: transparent;
+                               display: inline-block;">
+                     </i>
                         ফিল্টার
                     </button>
                 </div>
@@ -168,12 +186,7 @@
     </section>
 
     <!-- Add Candidate Button -->
-    <section class="text-center mb-5">
-        <a href="{% url 'candidate_form' %}" class="btn btn-university btn-lg">
-            <i class="bi bi-plus-circle me-2"></i>
-            নতুন প্রার্থী যোগ করুন
-        </a>
-    </section>
+  
 
     <!-- External Link -->
     <section class="text-center mb-5">
