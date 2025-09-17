@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CUCSU Election 2025{% endblock %}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ (চাকসু) ও হল সংসদ নির্বাচন ২০২৫ - প্রার্থীদের তালিকা, ইশতেহার এবং বিস্তারিত তথ্য">
+    <meta name="author" content="Ek Takay Shikkha Foundation">
+    <meta name="keywords" content="CUCSU, চাকসু, চট্টগ্রাম বিশ্ববিদ্যালয়, ছাত্র সংসদ, নির্বাচন, ২০২৫, হল সংসদ">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="CUCSU Election 2025 - চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ নির্বাচন">
+    <meta property="og:description" content="চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ (চাকসু) ও হল সংসদ নির্বাচন ২০২৫ - প্রার্থীদের তালিকা, ইশতেহার এবং বিস্তারিত তথ্য">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{% static 'images/cucsu-banner.jpg' %}">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

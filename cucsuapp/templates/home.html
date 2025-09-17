@@ -1,116 +1,177 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CUCSU Election 2025</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-</head>
-<body>
 
-<div class="container mt-5">
+{% block title %}CUCSU Election 2025 - চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ নির্বাচন{% endblock %}
 
-    <h1 class="text-center mb-4">
-        চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ নির্বাচন (চাকসু) ও হল সংসদ নির্বাচন – ২০২৫
-    </h1>
-    <h2 class="text-center mb-4">প্রার্থীদের তালিকা এবং ইশতিহার</h2>
-
-    {% comment %} <div class="text-center mb-4">
-        <img src="{% static 'cucsuapp/images/cucsu.jpg' %}" alt="CUCSU Banner" class="img-fluid rounded shadow">
-    </div> {% endcomment %}
-
-  
-
+{% block content %}
 <div class="container my-5">
-    <div class="row align-items-center">
+    
+    <!-- Hero Section -->
+    <header class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary mb-4">
+            চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ নির্বাচন (চাকসু)
+        </h1>
+        <h2 class="h3 text-success fw-semibold mb-3">
+            ও হল সংসদ নির্বাচন – ২০২৫
+        </h2>
+        <p class="lead text-warning fw-medium">
+            প্রার্থীদের তালিকা এবং ইশতেহার
+        </p>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section class="row align-items-center mb-5">
         <!-- Left: Image -->
-        <div class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <div class="col-12 col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
             <img src="{% static 'cucsuapp/images/cucsu.jpg' %}" 
                  alt="CUCSU Banner" 
-                 class="img-fluid rounded shadow" 
+                 class="img-fluid rounded-3 shadow-lg hover-shadow-glow" 
                  style="max-width:100%; height:auto;">
         </div>
 
         <!-- Right: Text -->
-        <div class="col-12 col-md-6">
-            <div class="card shadow-sm border-0">
-                <div class="card-body">
-                    <p class="fs-5 mb-0">
+        <div class="col-12 col-lg-6">
+            <div class="card shadow-sm border-0 university-card">
+                <div class="card-body p-4">
+                    <p class="fs-5 mb-3">
                         চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ (চাকসু) হলো চট্টগ্রাম বিশ্ববিদ্যালয়ের শিক্ষার্থীদের সর্বোচ্চ প্রতিনিধিত্বকারী সংগঠন। এটি শিক্ষার্থীদের ন্যায্য অধিকার সংরক্ষণ, একাডেমিক মানোন্নয়ন, এবং বিশ্ববিদ্যালয়ের সার্বিক কল্যাণমূলক কার্যক্রমে গুরুত্বপূর্ণ ভূমিকা পালন করে আসছে।
-
-এই অনলাইন প্ল্যাটফর্মটি চাকসু নির্বাচনে অংশগ্রহণকারী প্রার্থীদের তথ্য এবং ইশতেহার প্রদর্শনের জন্য তৈরি করা হয়েছে, যাতে শিক্ষার্থীরা তাদের পছন্দের প্রার্থী সম্পর্কে সহজে এবং স্বচ্ছভাবে অবগত হতে পারে। পাশাপাশি, এটি প্রার্থীদের প্রচারণা ও পরিচিতি বৃদ্ধিতেও সহায়ক হিসেবে কাজ করবে। </p>
+                    </p>
+                    <p class="fs-5 mb-0">
+                        এই অনলাইন প্ল্যাটফর্মটি চাকসু নির্বাচনে অংশগ্রহণকারী প্রার্থীদের তথ্য এবং ইশতেহার প্রদর্শনের জন্য তৈরি করা হয়েছে, যাতে শিক্ষার্থীরা তাদের পছন্দের প্রার্থী সম্পর্কে সহজে এবং স্বচ্ছভাবে অবগত হতে পারে।
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-
-    <!-- Filter Form -->
-    <form method="get" class="mb-4">
-        <div class="row g-2 align-items-center">
-            <div class="col-12 col-sm-6 col-md-4">
-                <select name="position" class="form-select">
-                    <option value="">-পদ অনুযায়ী ফিল্টার করুন-</option>
-                    {% for value, label in positions %}
-                        <option value="{{ value }}" {% if selected_position == value %}selected{% endif %}>
-                            {{ label }}
-                        </option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <div class="col-6 col-sm-3 col-md-2">
-                <button type="submit" class="btn btn-primary w-100">Filter</button>
-            </div>
-
-            <div class="col-6 col-sm-3 col-md-2">
-                <a href="{% url 'home' %}" class="btn btn-outline-secondary w-100">Reset</a>
-            </div>
-        </div>
-    </form>
-
-    <!-- Candidates Grid -->
-    <div class="row">
-        {% for candidate in candidates %}
-        <div class="col-12 col-sm-6 col-md-3 text-center mb-4">
-            <div class="card h-100 shadow-sm">
-                <img src="{{ candidate.image.url }}" class="card-img-top rounded-circle mx-auto mt-3" 
-                     style="width:150px; height:150px; object-fit:cover;">
-                <div class="card-body text-start">
-                    <h5 class="card-title"><i class="bi bi-person-fill"></i> নাম : {{ candidate.name }}</h5>
-                    <h6 class="card-text"><i class="bi bi-building"></i> নির্বাচনের ধরন: {{ candidate.get_election_type_display }}</h6>
-                    <h6 class="card-text"><i class="bi bi-people-fill"></i> প্যানেল : {{ candidate.panel }}</h6>
-                    <h6 class="card-text"><i class="bi bi-people-fill"></i> পদ : {{ candidate.get_position_display }}</h6>
-                    <h6 class="card-text"><i class="bi bi-card-checklist"></i>ব্যালট নাম্বার: {{ candidate.ballot }}</h6>
+    <!-- Filter Section -->
+    <section class="card shadow-sm border-0 university-card mb-5">
+        <div class="card-body p-4">
+            <form method="get" class="row g-3 align-items-end">
+                <div class="col-12 col-md-8">
+                    <label for="position" class="form-label fw-medium">পদ অনুযায়ী ফিল্টার করুন</label>
+                    <select name="position" id="position" class="form-select university-select">
+                        <option value="">-সকল পদ-</option>
+                        {% for value, label in positions %}
+                            <option value="{{ value }}" {% if selected_position == value %}selected{% endif %}>
+                                {{ label }}
+                            </option>
+                        {% endfor %}
+                    </select>
                 </div>
-                <div class="card-footer bg-light text-center border-0">
-                    <a href="{% url 'details' candidate.id %}" 
-                       class="btn btn-sm btn-outline-primary rounded-pill px-4">
-                        বিস্তারিত <i class="bi bi-arrow-right-circle ms-1"></i>
+
+                <div class="col-6 col-md-2">
+                    <button type="submit" class="btn btn-filter w-100">
+                        <i class="bi bi-funnel me-1"></i>
+                        ফিল্টার
+                    </button>
+                </div>
+
+                <div class="col-6 col-md-2">
+                    <a href="{% url 'home' %}" class="btn btn-reset w-100">
+                        <i class="bi bi-arrow-clockwise me-1"></i>
+                        রিসেট
                     </a>
                 </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Candidates Grid -->
+    <section class="row g-4 mb-5">
+        {% for candidate in candidates %}
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <article class="card h-100 shadow-sm candidate-card university-card">
+                <div class="card-header text-center bg-transparent border-0 pt-4">
+                    <div class="position-relative d-inline-block">
+                        <img src="{{ candidate.image.url }}" 
+                             class="rounded-circle candidate-image shadow" 
+                             style="width:120px; height:120px; object-fit:cover;"
+                             alt="{{ candidate.name }}">
+                        <div class="candidate-image-overlay"></div>
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <div class="candidate-info">
+                        <div class="info-item mb-2">
+                            <i class="bi bi-person-fill text-primary me-2"></i>
+                            <span class="text-muted">নাম:</span>
+                            <strong class="ms-1">{{ candidate.name }}</strong>
+                        </div>
+                        
+                        <div class="info-item mb-2">
+                            <i class="bi bi-building text-success me-2"></i>
+                            <span class="text-muted">নির্বাচনের ধরন:</span>
+                            <span class="badge bg-secondary ms-1">{{ candidate.get_election_type_display }}</span>
+                        </div>
+                        
+                        <div class="info-item mb-2">
+                            <i class="bi bi-people-fill text-warning me-2"></i>
+                            <span class="text-muted">প্যানেল:</span>
+                            <strong class="text-primary ms-1">{{ candidate.panel }}</strong>
+                        </div>
+                        
+                        <div class="info-item mb-2">
+                            <i class="bi bi-award text-info me-2"></i>
+                            <span class="text-muted">পদ:</span>
+                            <strong class="ms-1">{{ candidate.get_position_display }}</strong>
+                        </div>
+                        
+                        <div class="info-item mb-0">
+                            <i class="bi bi-card-checklist text-primary me-2"></i>
+                            <span class="text-muted">ব্যালট নাম্বার:</span>
+                            <span class="badge bg-outline-primary ms-1">{{ candidate.ballot }}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer bg-transparent border-0 text-center pb-4">
+                    <a href="{% url 'details' candidate.id %}" 
+                       class="btn btn-details rounded-pill px-4">
+                        বিস্তারিত
+                        <i class="bi bi-arrow-right-circle ms-1"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="text-center py-5">
+                <i class="bi bi-search display-1 text-muted mb-3"></i>
+                <p class="fs-5 text-muted">
+                    কোনো প্রার্থী পাওয়া যায়নি। অনুগ্রহ করে ফিল্টার রিসেট করুন।
+                </p>
             </div>
         </div>
         {% endfor %}
-    </div>
+    </section>
 
-    <div class="d-flex justify-content-center mb-3">
-        <a href="{% url 'candidate_form' %}" class="btn btn-primary">Add Candidate</a>
-    </div>
+    <!-- Add Candidate Button -->
+    <section class="text-center mb-5">
+        <a href="{% url 'candidate_form' %}" class="btn btn-university btn-lg">
+            <i class="bi bi-plus-circle me-2"></i>
+            নতুন প্রার্থী যোগ করুন
+        </a>
+    </section>
 
-    <div class="text-center mb-3">
-        <a href="https://cucsu.cu.ac.bd/">চট্টগ্রাম বিশ্ববিদ্যালয়ের অফিশিয়াল তথ্যকেন্দ্র</a>
-    </div>
+    <!-- External Link -->
+    <section class="text-center mb-5">
+        <a href="https://cucsu.cu.ac.bd/" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="btn btn-outline-primary">
+            চট্টগ্রাম বিশ্ববিদ্যালয়ের অফিশিয়াল তথ্যকেন্দ্র
+            <i class="bi bi-box-arrow-up-right ms-1"></i>
+        </a>
+    </section>
 
-    <footer class="text-center mt-5 mb-3">
-        <p class="text-muted">&copy; Powered By <strong>Ek Takay Shikkha Foundation</strong></p>
+    <!-- Footer -->
+    <footer class="text-center py-4 border-top">
+        <p class="text-muted mb-0">
+            &copy; Powered By <strong class="text-primary">Ek Takay Shikkha Foundation</strong>
+        </p>
     </footer>
 
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+{% endblock %}
