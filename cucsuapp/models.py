@@ -43,7 +43,7 @@ class Candidate(models.Model):
     image = models.ImageField(upload_to='candidates/')
     manifesto = models.TextField()
     position = models.CharField(max_length=100, choices=POSITION_CHOICES)
-    ballot = models.CharField(max_length=50)
+    ballot = models.CharField(max_length=50,blank=True, null=True)
     panel = models.CharField(max_length=50)
     election_type = models.CharField(
         max_length=20,
