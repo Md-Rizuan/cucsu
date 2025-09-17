@@ -50,7 +50,7 @@ def details(request, pk):
     return render(request, 'details.html', {'candidate': candidate})
 def candidate_form(request):
     if request.method == 'POST':
-        # Form থেকে data নাও
+        
         name = request.POST.get('name')
         department = request.POST.get('department')
         session = request.POST.get('session')
@@ -61,7 +61,7 @@ def candidate_form(request):
         manifesto = request.POST.get('manifesto')
         election_type = request.POST.get('election_type')
         image = request.FILES.get('image')
-          # ফাইল handle করার জন্য
+          
 
         # Save to database
         candidate = Candidate(
