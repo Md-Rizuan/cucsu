@@ -2,6 +2,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Candidate, POSITION_CHOICES
 from django.shortcuts import redirect
+from django.contrib import messages
 
 def home(request):
     # candidates = Candidate.objects.all()
@@ -61,6 +62,13 @@ def candidate_form(request):
         manifesto = request.POST.get('manifesto')
         election_type = request.POST.get('election_type')
         image = request.FILES.get('image')
+
+        if Candidate.objects.filter(student_id=student_id).exists():
+                messages.error(request, "এই Student ID দিয়ে ইতিমধ্যেই একজন প্রার্থী আছে।")
+                return redirect('candidate_form') 
+        if image and image.size > 3 * 1024 * 1024:
+                messages.error(request, "ছবির আকার 3MB এর বেশি হতে পারবে না।")
+                return redirect('candidate_form')
           
 
         # Save to database
@@ -83,4 +91,6 @@ def candidate_form(request):
 
     # GET request এ ফর্ম দেখাও
     return render(request, 'candidate_form.html')
+def about(request):
+    return render(request, 'about.html')
 
