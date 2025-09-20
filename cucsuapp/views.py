@@ -62,6 +62,7 @@ def candidate_form(request):
         manifesto = request.POST.get('manifesto')
         election_type = request.POST.get('election_type')
         image = request.FILES.get('image')
+        banner_image = request.FILES.get('banner_image')
 
         if Candidate.objects.filter(student_id=student_id).exists():
                 messages.error(request, "এই Student ID দিয়ে ইতিমধ্যেই একজন প্রার্থী আছে।")
@@ -93,4 +94,6 @@ def candidate_form(request):
     return render(request, 'candidate_form.html')
 def about(request):
     return render(request, 'about.html')
+def contact(request):
+    return render(request, 'contact.html')
 
