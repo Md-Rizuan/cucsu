@@ -63,6 +63,8 @@ def candidate_form(request):
         election_type = request.POST.get('election_type')
         image = request.FILES.get('image')
         banner_image = request.FILES.get('banner_image')
+        youtube_link = request.POST.get('youtube_link')
+        experience = request.POST.get('experience')
 
         if Candidate.objects.filter(student_id=student_id).exists():
                 messages.error(request, "এই Student ID দিয়ে ইতিমধ্যেই একজন প্রার্থী আছে।")
@@ -82,8 +84,13 @@ def candidate_form(request):
             ballot=ballot,
             panel=panel,
             manifesto=manifesto,
+            experience=experience,
+            banner_image=banner_image,
             election_type=election_type,
-            image=image
+            image=image,
+            youtube_link=youtube_link,
+
+            
         )
         candidate.save()
 

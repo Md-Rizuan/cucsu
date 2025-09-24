@@ -28,17 +28,39 @@ POSITION_CHOICES = [
     ('library_cafe', 'পাঠাগার ও ক্যাফেটেরিয়া বিষয়ক সম্পাদক'),
     ('executive', 'নির্বাহী সদস্য'),
 ]
+HALL_CHOICES = [
+        # ছাত্রদের হল
+        ('alaol', 'আলাওল হল'),
+        ('af_rahman', 'এ. এফ. রহমান হল'),
+        ('shahjalal', 'শাহজালাল হল'),
+        ('suhrawardy', 'সোহরাওয়ার্দী হল'),
+        ('shah_amanat', 'শাহ আমানত হল'),
+        ('rab_hall', 'শহীদ আবদুর রব হল'),
+        ('pritilata', 'প্রীতিলতা হল'),
+        ('surja_sen', 'মাস্টারদা সূর্যসেন হল'),
+        ('shaheed_farhad', 'শহীদ ফরহাদ হোসেন হল'),
+        ('bijoy_24', 'বিজয় ২৪ হল'),
+        ('nawab_faizunnesa', 'নওয়াব ফয়জুন্নেসা হল'),
+        ('atish_dipangkar', 'অতীশ দীপঙ্কর শ্রীজ্ঞান হল'),
+        ('artist_rashid_chowdhury', 'শিল্পী রশীদ চৌধুরী হোস্টেল'),
+
+        # ছাত্রীদের হল
+        ('khaleda_hall', 'দেশনেত্রী বেগম খালেদা জিয়া হল'),
+        ('shamsun_nahar', 'শামসুন নাহার হল'),
+    ]
 
 class Candidate(models.Model):
     ELECTION_TYPE_CHOICES = [
     ('CUCSU', 'কেন্দ্রীয় ছাত্র সংসদ'),
     ('HALL', 'হল সংসদ'),
 ]
+    
   
 
     name = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
     session = models.CharField(max_length=50)
+    hall = models.CharField(max_length=50, choices=HALL_CHOICES)
     student_id = models.CharField(max_length=20)
     image = models.ImageField(upload_to='candidates/')
     banner_image = models.ImageField(upload_to='banners/', blank=True, null=True)
@@ -47,6 +69,7 @@ class Candidate(models.Model):
     position = models.CharField(max_length=100, choices=POSITION_CHOICES)
     ballot = models.CharField(max_length=50,blank=True, null=True)
     panel = models.CharField(max_length=50)
+    youtube_link = models.URLField(max_length=500, blank=True, null=True)
     election_type = models.CharField(
         max_length=20,
         choices=ELECTION_TYPE_CHOICES,
