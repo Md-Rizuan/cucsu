@@ -3,6 +3,7 @@
 
 {% block title %}CUCSU Election 2025 - চট্টগ্রাম বিশ্ববিদ্যালয় কেন্দ্রীয় ছাত্র সংসদ নির্বাচন{% endblock %}
 
+
 {% block content %}
 <div class="container my-5">
     
@@ -17,6 +18,8 @@
         <p class="lead text-warning fw-medium">
             প্রার্থীদের তালিকা এবং ইশতেহার
         </p>
+        <!-- Notyf CSS -->
+
     </header>
 
     <!-- Hero Banner Section -->
@@ -161,6 +164,17 @@
                             <span class="text-muted">ব্যালট নাম্বার:</span>
                             <span class="text-black bg-outline-primary ms-1">{{ candidate.ballot }}</span>
                         </div>
+                        <div class="text-center mt-3">
+                            <form class="vote-form" data-id="{{ candidate.id }}" action="{% url 'vote_candidate' candidate.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary rounded-pill px-4">
+                                    <i class="bi bi-heart-fill me-1"></i> Vote
+                                    <span class="badge bg-light text-dark ms-2" id="vote-count-{{ candidate.id }}">
+                                        {{ candidate.votes.count }}
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 
@@ -199,13 +213,48 @@
         </a>
     </section>
 
-    <!-- Footer -->
-    {% comment %} <footer class="text-center py-4 border-top">
-        <p class="text-muted mb-0">
-            &copy; Powered By <strong class="text-primary">Ek Takay Shikkha Foundation</strong>
-        </p>
-    </footer> {% endcomment %}
 
 </div>
 {% endblock %}
+
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Load Notyf JS -->
+
+
+<script>
+$(document).ready(function() {
+    const notyf = new Notyf({
+        duration: 3000,
+        position: { x: 'right', y: 'top' },
+        dismissible: true
+    });
+    $(".vote-form").submit(function(e) {
+        e.preventDefault(); 
+
+        var form = $(this);
+        var candidateId = form.data("id");
+
+        $.ajax({
+            url: form.attr("action"),
+            type: "POST",
+            headers: { "X-CSRFToken": "{{ csrf_token }}" },
+            success: function(data) {
+                if(data.success){
+                    $("#vote-count-" + candidateId).text(data.votes_count);
+                    alert("আপনার ভোট সফলভাবে দেওয়া হয়েছে!");
+                    location.reload();
+                } else {
+                    notyf.error(data.message);
+                }
+            },
+            error: function(xhr, status, error){
+                notyf.error("একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+            }
+        });
+    });
+});
+</script>
 

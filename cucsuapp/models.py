@@ -78,3 +78,20 @@ class Candidate(models.Model):
 
     def __str__(self):
         return self.name
+    
+# class VoteIP(models.Model):
+#     candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, related_name="votes")
+#     ip_address = models.GenericIPAddressField()
+#     voted_at = models.DateTimeField(auto_now_add=True)
+
+#     class Meta:
+#         unique_together = ('candidate', 'ip_address')  # একই candidate-এ এক IP একবার
+
+
+class VoteIP(models.Model):
+    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, related_name="votes")
+    ip_address = models.GenericIPAddressField()
+    voted_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('candidate', 'ip_address')  # এক candidate-এ এক IP একবারই
