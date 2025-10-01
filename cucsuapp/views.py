@@ -1,8 +1,10 @@
 # elections/views.py
 from django.shortcuts import render, get_object_or_404
-from .models import Candidate, POSITION_CHOICES
+from .models import Candidate, POSITION_CHOICES, VoteIP
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
 def home(request):
     # candidates = Candidate.objects.all()
@@ -103,4 +105,47 @@ def about(request):
     return render(request, 'about.html')
 def contact(request):
     return render(request, 'contact.html')
+
+
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+@csrf_exempt
+def vote_candidate(request, candidate_id):
+    if request.method == "POST":
+        try:
+            candidate = Candidate.objects.get(id=candidate_id)
+            ip = get_client_ip(request)
+
+            # Check if this IP has already voted for this candidate
+            if VoteIP.objects.filter(candidate=candidate, ip_address=ip).exists():
+                messages.error(request, "আপনি ইতিমধ্যে এই প্রার্থীর জন্য ভোট দিয়েছেন!")
+                return redirect('already_voted')  # Redirect to a page indicating already voted
+
+            VoteIP.objects.create(candidate=candidate, ip_address=ip)
+            # candidate.votes += 1
+            # candidate.save()
+            messages.success(request, "আপনার ভোট সফলভাবে সম্পন্ন হয়েছে!")
+            return redirect('voted')
+
+            # return JsonResponse({"success": True, "votes_count": candidate.votes.count()})
+
+        except Candidate.DoesNotExist:
+            messages.error(request, "Candidate পাওয়া যায়নি।")
+            return redirect('home')
+
+    messages.error(request, "Invalid request")
+    return redirect('home')
+
+def already_voted(request):
+    return render(request, 'already_voted.html')
+def voted(request):
+    return render(request, 'voted.html')
 
