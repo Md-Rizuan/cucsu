@@ -125,7 +125,8 @@ def vote_candidate(request, candidate_id):
             ip = get_client_ip(request)
 
             # Check if this IP has already voted for this candidate
-            if VoteIP.objects.filter(candidate=candidate, ip_address=ip).exists():
+            if VoteIP.objects.filter(candidate__election_type=candidate.election_type,
+                candidate__position=candidate.position, ip_address=ip).exists():
                 messages.error(request, "আপনি ইতিমধ্যে এই প্রার্থীর জন্য ভোট দিয়েছেন!")
                 return redirect('already_voted')  # Redirect to a page indicating already voted
 
