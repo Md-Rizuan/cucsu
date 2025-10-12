@@ -1,29 +1,43 @@
-name: Deploy to GCP Server
+name: 🚀 Auto Deploy to GCP Server
 
 on:
   push:
     branches:
-      - main  # main এ push দিলে auto deploy হবে
+      - main   # main branch এ push করলে deploy হবে
 
 jobs:
   deploy:
+    name: Deploy to Server
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Connect to server and deploy
+      - name: Set up SSH and Deploy
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            echo "🔹 Pulling latest code..."
             cd /var/www/cucsu
             git pull origin main
+
+            echo "🔹 Activating virtual environment..."
             source env/bin/activate
+
+            echo "🔹 Installing dependencies..."
             pip install -r requirements.txt
+
+            echo "🔹 Running migrations..."
             python manage.py migrate
+
+            echo "🔹 Collecting static files..."
             python manage.py collectstatic --noinput
+
+            echo "🔹 Restarting Gunicorn..."
             sudo systemctl restart gunicorn
+
+            echo "✅ Deployment complete!"
