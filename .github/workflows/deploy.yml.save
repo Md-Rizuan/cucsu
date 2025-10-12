@@ -1,0 +1,28 @@
+name: CI/CD Deployment
+
+
+on:
+  push:
+    branches:
+      - main   # main branch এ push করলে workflow চলবে
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Code checkout
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: SSH দিয়ে server-এ deploy script রান করা
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.techlounge.dev }}       # server IP বা domain
+          username: ${{ secrets.lounge_vr186 }}   # server username
+          key: ${{ secrets.SERVER_SSH_KEY }}     # private SSH key
+          port: 22
+          script: |
+            cd /var/www/cucsu
+            ./deploy.sh
