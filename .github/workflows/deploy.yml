@@ -17,13 +17,9 @@ jobs:
       - name: Set up SSH and Deploy
         uses: appleboy/ssh-action@v1.2.0
         with:
-          host: ${{ secrets.34.133.227.230 }}
-          username: ${{ secrets.lounge_vr186 }}
-          key: ${{ secrets.b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
-QyNTUxOQAAACCzkRfqYCeqSRCED254o6qdYuT55+b1S+uulNZqcIrOvgAAAKBkhGIGZIRi
-BgAAAAtzc2gtZWQyNTUxOQAAACCzkRfqYCeqSRCED254o6qdYuT55+b1S+uulNZqcIrOvg
-AAAEDvyWj7zs4imTEhUY4wcff3uKsEnvJqHBH5HrsWpKtR4bORF+pgJ6pJEIQPbnijqp1i
-5Pnn5vVL666U1mpwis6+AAAAGWdpdGh1Yi1hY3Rpb25zQHRlY2hsb3VuZ2UBAgME }}
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "🔹 Pulling latest code..."
             cd /var/www/cucsu
